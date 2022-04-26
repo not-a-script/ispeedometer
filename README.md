@@ -19,3 +19,7 @@ You can have support on our <a href="https://discord.gg/8ecXhFXqR4">Discord</a> 
 
 
 ![Capture d’écran 2022-04-26 222512](https://user-images.githubusercontent.com/40030799/165386454-b5a423b9-eaa4-44de-a692-dc3ae52db71d.png)
+
+
+Dependency 
+ - <a href="https://github.com/InZidiuZ/LegacyFuel">LegacyFuel</a> (can be change easily from the config)
