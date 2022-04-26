@@ -7,7 +7,6 @@ local HologramURI        = string.format("nui://%s/ui/hologram.html", ResourceNa
 local AttachmentOffset   = vec3(2.5, -1, 1)
 local AttachmentRotation = vec3(0, 0, -15)
 local HologramModel      = `hologram_box_model`
-local UpdateFrequency    = 0 -- If less than average frame time, there will be an update every tick regardless of the actual number specified.
 local SettingKey         = string.format("%s:profile", GetCurrentServerEndpoint()) -- The key to store the current theme setting in. As themes are per server, this key is also.
 local DBG                = false -- Enables debug information, not very useful unless you know what you are doing!
 
@@ -228,9 +227,9 @@ CreateThread(function()
 	
 	InitialiseDui()
 
-
+	local playerPed
 	while true do
-		local playerPed = PlayerPedId()
+		playerPed = PlayerPedId()
 
 		-- This thread watches for changes to the user's preferred measurement system
 		shouldUseMetric = ShouldUseMetricMeasurements()
@@ -292,7 +291,7 @@ CreateThread(function()
 	end
 end)
 
-Citizen.CreateThread(function ()
+CreateThread(function ()
 	while true do
 		if showHud then
 

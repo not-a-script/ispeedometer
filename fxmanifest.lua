@@ -1,10 +1,11 @@
 fx_version 'cerulean'
 game 'gta5'
+lua54 'yes'
 
 author 'Akkariin'
-description 'A hologram speedometer script for FiveM'
-url 'https://www.zerodream.net/'
-version '1.0.2'
+description 'Edited by Sinyx for iDev'
+support 'https://discord.gg/8ecXhFXqR4'
+version '1.1'
 
 files {
 	'data/handling.meta',
@@ -14,14 +15,15 @@ files {
 	'ui/*.*'
 }
 
-client_script 'client.lua'
+client_scripts {
+	'config.lua',
+	'client.lua'
+}
+
 server_script 'server.lua'
 
-dependency "space_plugs"
+
 
 data_file 'HANDLING_FILE' 'data/handling.meta'
 data_file 'VEHICLE_METADATA_FILE' 'data/vehicles.meta'
 data_file 'VEHICLE_VARIATION_FILE' 'data/carvariations.meta'
-
-
-client_script '@big_brother/mybigbrother.lua'
