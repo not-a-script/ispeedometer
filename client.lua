@@ -314,7 +314,7 @@ CreateThread(function ()
 	end
 end)
 
-AddEventHandler("hologramspeed:seatbeltUpdate", function (state)
+AddEventHandler("hologramspeed:seatbeltUpdate", function(state)
 	EnsureDuiMessage{ 
 		needBelt = state 
 	}
