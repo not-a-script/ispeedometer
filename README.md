@@ -5,7 +5,7 @@ Hologram Speed Script edited for RP server (fuel ui and fixed problems with ui)
 
 ⚠️Download the <a href="https://github.com/idev-co/iSpeedometer/releases/tag/main">release</a> and not the "Download ZIP" version
 
-Modification of <a href="https://github.com/kasuganosoras/hologramspeed">HologramSpeed</a>, code was rewriting by <a href="https://github.com/s1nyx">Sinyx</a> due to
+Modification of <a href="https://github.com/kasuganosoras/hologramspeed">HologramSpeed</a>, code was rewriting mainly by <a href="https://github.com/s1nyx">Sinyx</a> and <a href="https://github.com/TheSpaceGamerV2">Space V</a> due to
 bugs where the nui was disappearing and added an NUI for fuel (it's adapted for LegacyFuel but can be change easily in the config.)
 
 How to adapt your seatbelt script to iSpeedometer
