@@ -17,7 +17,7 @@ files {
 client_script 'client.lua'
 server_script 'server.lua'
 
-dependency "np-fuel"
+dependency "space_plugs"
 
 data_file 'HANDLING_FILE' 'data/handling.meta'
 data_file 'VEHICLE_METADATA_FILE' 'data/vehicles.meta'

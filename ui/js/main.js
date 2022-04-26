@@ -6,6 +6,7 @@ const AbsIndicator = document.getElementById("absIndicator");
 const HBrakeIndicator = document.getElementById("hBrakeIndicator");
 const RpmDisplay = document.getElementById("rpmBar");
 const FuelDisplay = document.getElementById("fuelBar");
+const beltDisplay = document.getElementById("belt");
 
 const SpeedDisplay = [
 	document.getElementById("speedDisplayDigit_0"),
@@ -31,6 +32,12 @@ function changeTheme(name) {
 
 window.addEventListener("message", function(ev) {
 	const data = ev.data;
+
+	if (data.needBelt) {
+		beltDisplay.id = "belt";
+	} else if (data.needBelt === false) {
+		beltDisplay.id = "";
+	}
 
 	if (data.theme != undefined) changeTheme(data.theme);
 

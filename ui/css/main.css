@@ -150,6 +150,7 @@
     bottom: -14px;
     left: 240px;
 }
+
 #fuelBar {
 	width: 100%;
     height: 0%;
@@ -164,4 +165,26 @@
     left: 236px;
     bottom: 80px;
 	fill: var(--rpm-fill);
+}
+
+.belt-icon {
+	width: 30px;
+	position: absolute;
+	left: 184px;
+	bottom: -243px;
+	fill: var(--rpm-fill);
+	opacity: 0;
+}
+
+#belt {
+	animation-duration: 1.5s;
+	animation-name: belt-animation;
+	animation-iteration-count: infinite;
+	transition: none;
+}
+
+@keyframes belt-animation {
+   	0%   { opacity:1; }
+   	40%   {opacity:0; }
+   	100% { opacity:1; }
 }

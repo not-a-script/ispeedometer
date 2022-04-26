@@ -69,14 +69,13 @@ end
 
 local function ToggleDisplay()
 	displayEnabled = not displayEnabled
-	SendChatMessage("Le speedometer est désormais " .. (displayEnabled and "^2Activé^r" or "^1Désactivé^r") .. ".") 
 	SavePlayerProfile()
 end
 
 local function SetTheme(newTheme)
 	if newTheme ~= currentTheme then
 		EnsureDuiMessage {theme = newTheme}
-		SendChatMessage(newTheme == "default" and "Holographic speedometer theme ^5reset^r." or ("Holographic speedometer theme set to ^5" .. newTheme .. "^r."))
+		SendChatMessage(newTheme == "default" and HologramSpeedConfig.Lang.speedometer_reset or (HologramSpeedConfig.Lang.speedometer_set .. newTheme .. "^r."))
 		currentTheme = newTheme
 		SavePlayerProfile()
 	end
@@ -105,14 +104,14 @@ end
 
 local function CommandHandler(args)
 
-	local msgErr = "^1The the acceptable range for ^0%s ^1is ^0%f^1 ~ ^0%f^1, reset to default setting.^r"
-	local msgSuc = "^2Speedometer ^0%s ^2changed to ^0%f, %f, %f^r"
+	local msgErr = HologramSpeedConfig.Lang.msg_err
+	local msgSuc = HologramSpeedConfig.Lang.msg_succ
 	
 	if args[1] == "theme" then
 		if #args >= 2 then
 			TriggerServerEvent('HologramSpeed:CheckTheme', args[2])
 		else
-			SendChatMessage("^1Invalid theme! ^0Usage: /hsp theme <name>^r")
+			SendChatMessage(HologramSpeedConfig.Lang.invalid_theme)
 		end
 	elseif args[1] == "offset" then
 		local nx, ny, nz = 2.5, -1, 0.85
@@ -123,7 +122,7 @@ local function CommandHandler(args)
 				SendChatMessage(string.format(msgErr, args[1], -5.0, 5.0))
 			end
 		else
-			SendChatMessage("Offset reset. To change the offset, use: /hsp offset <X> <Y> <Z>")
+			SendChatMessage(HologramSpeedConfig.Lang.offset_reset)
 		end
 		AttachmentOffset = vec3(nx, ny, nz)
 		UpdateEntityAttach()
@@ -138,14 +137,12 @@ local function CommandHandler(args)
 				SendChatMessage(string.format(msgErr, args[1], -45.0, 45.0))
 			end
 		else
-			SendChatMessage("Rotation reset. To change the rotation, use: /hsp rotate <X> <Y> <Z>")
+			SendChatMessage(HologramSpeedConfig.Lang.rotation_reset)
 		end
 		AttachmentRotation = vec3(nx, ny, nz)
 		UpdateEntityAttach()
 		SavePlayerProfile()
 		SendChatMessage(string.format(msgSuc, args[1], nx, ny, nz))
-	else
-		SendChatMessage("^1Usage: ^0/hsp <theme|offset|rotate> [args...]^r")
 	end
 end
 
@@ -157,7 +154,7 @@ end)
 
 -- Register command
 
-RegisterCommand("hsp", function(_, args)	
+RegisterCommand(HologramSpeedConfig.CommandName, function(_, args)	
 	if #args == 0 then
 	if IsPedInAnyVehicle(PlayerPedId(), true) then
 		ToggleDisplay()
@@ -167,11 +164,11 @@ RegisterCommand("hsp", function(_, args)
 	end
 end, false)
 
-TriggerEvent('chat:addSuggestion', '/hsp', 'Toggle the holographic speedometer', {
-    { name = "command",  help = "Allow command: theme, offset, rotate" },
+TriggerEvent('chat:addSuggestion', '/' .. HologramSpeedConfig.CommandName, HologramSpeedConfig.Lang.toggle_hologram, {
+    { name = "command",  help = HologramSpeedConfig.Lang.allow_command },
 })
 
-RegisterKeyMapping("hsp", "Changer la touche du Speedometer", "keyboard", "grave") -- default: `
+RegisterKeyMapping(HologramSpeedConfig.CommandName, HologramSpeedConfig.Lang.description_keymapping, "keyboard", "grave") -- default: `
 
 -- Initialise the DUI. We only need to do this once.
 local function InitialiseDui()
@@ -223,7 +220,7 @@ CreateThread(function()
 	end
 
 	if not IsModelInCdimage(HologramModel) or not IsModelAVehicle(HologramModel) then
-		SendChatMessage("^1Could not find `hologram_box_model` in the game... ^rHave you installed the resource correctly?")
+		SendChatMessage(HologramSpeedConfig.Lang.error_miss_stream)
 		return
 	end
 	
@@ -309,13 +306,19 @@ Citizen.CreateThread(function ()
 					abs      = (GetVehicleWheelSpeed(currentVehicle, 0) == 0.0) and (vehicleSpeed > 0.0),
 					hBrake   = GetVehicleHandbrake(currentVehicle),
 					rawSpeed = vehicleSpeed,
-					fuel = exports["np-fuel"]:GetFuel(currentVehicle)
+					fuel = GetFuelHologram(currentVehicle)
 				}
 			end
 		end
 
 		Wait(intervalShowHud)
 	end
+end)
+
+AddEventHandler("hologramspeed:seatbeltUpdate", function (state)
+	EnsureDuiMessage{ 
+		needBelt = state 
+	}
 end)
  
 -- Resource cleanup
