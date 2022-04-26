@@ -304,7 +304,7 @@ CreateThread(function ()
 					gear     = GetVehicleCurrentGear(currentVehicle),
 					abs      = (GetVehicleWheelSpeed(currentVehicle, 0) == 0.0) and (vehicleSpeed > 0.0),
 					hBrake   = GetVehicleHandbrake(currentVehicle),
-					rawSpeed = vehicleSpeed,
+					rawSpeed = vehicleSpeed * 3.6, -- if you want to convert in MPH replace 3.6 by 2.236936
 					fuel = GetFuelHologram(currentVehicle)
 				}
 			end
