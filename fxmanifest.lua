@@ -5,7 +5,7 @@ lua54 'yes'
 author 'Akkariin'
 description 'Edited by Sinyx & Space V for iDev'
 support 'https://discord.gg/8ecXhFXqR4'
-version '1.1'
+version '1.0.0'
 
 files {
 	'data/handling.meta',
