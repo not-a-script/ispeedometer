@@ -13,7 +13,7 @@ How to adapt your seatbelt script to iSpeedometer
      TriggerEvent("hologramspeed:seatbeltUpdate", true) -- put seatbelt to ON (in HUD)
      TriggerEvent("hologramspeed:seatbeltUpdate", false) -- put seatbelt to OFF (in HUD)
 ```
-You can use the <a href ="https://github.com/idev-co/iSpeedometer/releases/tag/seatbelt">release /example</a> if you don't what are you doing
+You can use the <a href ="https://github.com/idev-co/iSpeedometer/releases/tag/seatbelt">release /example</a> if you don't know what are you doing
 
 You can have support on our <a href="https://discord.gg/8ecXhFXqR4">Discord</a> (FR/ENG)
 
