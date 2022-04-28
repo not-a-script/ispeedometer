@@ -153,21 +153,17 @@ end)
 
 -- Register command
 
-RegisterCommand(HologramSpeedConfig.CommandName, function(_, args)	
-	if #args == 0 then
-	if IsPedInAnyVehicle(PlayerPedId(), true) then
-		ToggleDisplay()
-	else
-		CommandHandler(args)
-		end
-	end
-end, false)
-
-TriggerEvent('chat:addSuggestion', '/' .. HologramSpeedConfig.CommandName, HologramSpeedConfig.Lang.toggle_hologram, {
-    { name = "command",  help = HologramSpeedConfig.Lang.allow_command },
-})
-
-RegisterKeyMapping(HologramSpeedConfig.CommandName, HologramSpeedConfig.Lang.description_keymapping, "keyboard", "grave") -- default: `
+reateThread(function()
+    local sleep
+    while (true) do
+        sleep = 3000
+        if IsPedInAnyVehicle(PlayerPedId(), true) then
+            sleep = 0
+            ToggleDisplay()
+        end
+        Wait(sleep)
+    end
+end)
 
 -- Initialise the DUI. We only need to do this once.
 local function InitialiseDui()
