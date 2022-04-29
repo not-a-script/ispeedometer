@@ -50,7 +50,7 @@ window.addEventListener("message", function(ev) {
 	}
 
 	if (data.rawSpeed != undefined) {
-		var multiplier = useMetric ? 3.6 : 2.236936;
+		var multiplier = 3.6; // replace 3.6 by 2.236936 if you are in MPH
 		var unitSpeed = Math.floor(parseFloat(data.rawSpeed) * multiplier);
 		var speedString = unitSpeed.toString().padStart(3, '&');
 
